@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yoga AI | Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --secondary: #50C878;
+            --bg: #F8FAFC;
+            --surface: #FFFFFF;
+            --text: #1E293B;
+            --muted: #64748B;
+            --border: #E2E8F0;
+            --glass: rgba(255, 255, 255, 0.75);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius: 24px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0F172A;
+            --surface: #1E293B;
+            --text: #F1F5F9;
+            --muted: #94A3B8;
+            --glass: rgba(30, 41, 59, 0.8);
+            --border: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            transition: background 0.3s;
+        }
+
+        /* Glass Card */
+        .auth-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 440px;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .logo span { color: var(--primary); }
+        .logo-icon { color: var(--primary); width: 32px; height: 32px; }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        /* Input Styles */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 16px 14px 44px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .input-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+        }
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            width: 18px;
+            height: 18px;
+            pointer-events: none;
+            transition: color 0.3s;
+        }
+        .input-wrapper input:focus + i {
+            color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px 0 rgba(74, 144, 226, 0.3);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .switch-mode {
+            margin-top: 25px;
+            font-size: 0.875rem;
+            color: var(--muted);
+            text-align: center;
+        }
+        .switch-mode a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Message Alerts */
+        .alert {
+            display: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            align-items: center;
+            gap: 8px;
+            text-align: left;
+        }
+        .alert-error {
+            background: rgba(255, 59, 48, 0.1);
+            color: #FF3B30;
+            border: 1px solid rgba(255, 59, 48, 0.2);
+        }
+        .alert-success {
+            background: rgba(52, 199, 89, 0.1);
+            color: #34C759;
+            border: 1px solid rgba(52, 199, 89, 0.2);
+        }
+
+        /* Server Config Link */
+        .server-config-link {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        .server-config-link a {
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .server-config-link a:hover {
+            color: var(--primary);
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: var(--shadow);
+            text-align: left;
+        }
+        .modal h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .modal-footer .btn {
+            padding: 10px;
+        }
+        .btn-cancel {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            box-shadow: none;
+        }
+        .btn-cancel:hover {
+            background: var(--bg);
+            color: var(--text);
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Mode visibility toggles */
+        .register-only { display: none; }
+        body.mode-register .register-only { display: block; }
+        body.mode-register .login-only { display: none; }
+
+        /* Spinner */
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="auth-card">
+        <div class="logo">
+            <i data-lucide="activity" class="logo-icon"></i>
+            <span>Yoga<span>AI</span></span>
+        </div>
+        <p class="subtitle" id="form-subtitle">Smart Yoga Posture Correction</p>
+
+        <!-- Alerts -->
+        <div class="alert alert-error" id="alert-error">
+            <i data-lucide="alert-circle" style="width: 16px; height: 16px;"></i>
+            <span id="error-message">Error message</span>
+        </div>
+        <div class="alert alert-success" id="alert-success">
+            <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+            <span id="success-message">Success message</span>
+        </div>
+
+        <form id="auth-form" onsubmit="handleSubmit(event)">
+            <!-- Full Name (Register Only) -->
+            <div class="input-group register-only">
+                <label for="reg-name">Full Name</label>
+                <div class="input-wrapper">
+                    <input type="text" id="reg-name" placeholder="John Doe">
+                    <i data-lucide="user"></i>
+                </div>
+            </div>
+
+            <!-- Email (Both) -->
+            <div class="input-group">
+                <label for="auth-email">Email Address</label>
+                <div class="input-wrapper">
+                    <input type="email" id="auth-email" placeholder="yourname@gmail.com" required>
+                    <i data-lucide="mail"></i>
+                </div>
+            </div>
+
+            <!-- Password (Both) -->
+            <div class="input-group">
+                <label for="auth-password">Password</label>
+                <div class="input-wrapper">
+                    <input type="password" id="auth-password" placeholder="••••••••" required>
+                    <i data-lucide="lock"></i>
+                </div>
+            </div>
+
+            <!-- Confirm Password (Register Only) -->
+            <div class="input-group register-only">
+                <label for="reg-confirm-password">Confirm Password</label>
+                <div class="input-wrapper">
+                    <input type="password" id="reg-confirm-password" placeholder="••••••••">
+                    <i data-lucide="lock"></i>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="btn" type="submit" id="submit-btn">
+                <div class="spinner" id="btn-spinner"></div>
+                <span id="submit-btn-text">Sign In</span>
+                <i data-lucide="arrow-right" id="btn-arrow" style="width: 18px; height: 18px;"></i>
+            </button>
+        </form>
+
+        <div class="switch-mode">
+            <span id="switch-mode-text">New to Yoga AI? </span>
+            <a href="#" onclick="toggleMode(event)" id="switch-mode-link">Create Account</a>
+        </div>
+
+        <!-- Server Configuration -->
+        <div class="server-config-link">
+            <a href="#" onclick="openServerConfig(event)">
+                <i data-lucide="server" style="width: 14px; height: 14px;"></i>
+                Server Config
+            </a>
+        </div>
+    </div>
+
+    <!-- Server Config Modal -->
+    <div class="modal-overlay" id="server-config-modal">
+        <div class="modal">
+            <h3>
+                <i data-lucide="server" style="color: var(--primary); width: 20px; height: 20px;"></i>
+                Server Config
+            </h3>
+            <p>Configure backend server host IP to establish mobile debug connection.</p>
+            
+            <div class="input-group">
+                <label for="config-ip">Server IP Address</label>
+                <div class="input-wrapper" style="margin-bottom: 12px;">
+                    <input type="text" id="config-ip" placeholder="e.g. 192.168.1.100" style="padding: 10px 12px 10px 12px;">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="config-port">Port</label>
+                <div class="input-wrapper">
+                    <input type="text" id="config-port" placeholder="8000" style="padding: 10px 12px 10px 12px;">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-cancel" onclick="closeServerConfig()">Cancel</button>
+                <button class="btn" onclick="saveServerConfig()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import API from './api.js';
+
+        // Initialize icons
+        lucide.createIcons();
+
+        // Check theme
+        const theme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', theme);
+
+        let isRegisterMode = false;
+
+        window.toggleMode = (e) => {
+            if(e) e.preventDefault();
+            isRegisterMode = !isRegisterMode;
+            clearAlerts();
+
+            const form = document.getElementById('auth-form');
+            const submitBtnText = document.getElementById('submit-btn-text');
+            const switchModeText = document.getElementById('switch-mode-text');
+            const switchModeLink = document.getElementById('switch-mode-link');
+            const subtitle = document.getElementById('form-subtitle');
+
+            if (isRegisterMode) {
+                document.body.classList.add('mode-register');
+                submitBtnText.innerText = 'Create Account';
+                switchModeText.innerText = 'Already have an account? ';
+                switchModeLink.innerText = 'Sign In';
+                subtitle.innerText = 'Create your diabetic wellness account';
+                document.getElementById('reg-name').required = true;
+                document.getElementById('reg-confirm-password').required = true;
+            } else {
+                document.body.classList.remove('mode-register');
+                submitBtnText.innerText = 'Sign In';
+                switchModeText.innerText = 'New to Yoga AI? ';
+                switchModeLink.innerText = 'Create Account';
+                subtitle.innerText = 'Smart Yoga Posture Correction';
+                document.getElementById('reg-name').required = false;
+                document.getElementById('reg-confirm-password').required = false;
+            }
+            lucide.createIcons();
+        };
+
+        window.openServerConfig = (e) => {
+            if(e) e.preventDefault();
+            document.getElementById('config-ip').value = localStorage.getItem('backend_ip') || '192.168.137.1';
+            document.getElementById('config-port').value = localStorage.getItem('backend_port') || '8000';
+            document.getElementById('server-config-modal').classList.add('active');
+            lucide.createIcons();
+        };
+
+        window.closeServerConfig = () => {
+            document.getElementById('server-config-modal').classList.remove('active');
+        };
+
+        window.saveServerConfig = () => {
+            const ip = document.getElementById('config-ip').value.trim();
+            const port = document.getElementById('config-port').value.trim();
+            localStorage.setItem('backend_ip', ip);
+            localStorage.setItem('backend_port', port);
+            alert('Server config saved successfully!');
+            closeServerConfig();
+        };
+
+        function showAlert(type, message) {
+            clearAlerts();
+            const alert = document.getElementById(`alert-${type}`);
+            const textSpan = document.getElementById(`${type}-message`);
+            textSpan.innerText = message;
+            alert.style.display = 'flex';
+        }
+
+        function clearAlerts() {
+            document.getElementById('alert-error').style.display = 'none';
+            document.getElementById('alert-success').style.display = 'none';
+        }
+
+        function setBusy(busy) {
+            document.getElementById('submit-btn').disabled = busy;
+            document.getElementById('btn-spinner').style.display = busy ? 'block' : 'none';
+            document.getElementById('btn-arrow').style.display = busy ? 'none' : 'block';
+        }
+
+        window.handleSubmit = async (e) => {
+            e.preventDefault();
+            clearAlerts();
+
+            const email = document.getElementById('auth-email').value.trim();
+            const password = document.getElementById('auth-password').value;
+
+            if (isRegisterMode) {
+                const name = document.getElementById('reg-name').value.trim();
+                const confirmPassword = document.getElementById('reg-confirm-password').value;
+
+                if (!name) {
+                    showAlert('error', 'Please enter your full name.');
+                    return;
+                }
+                if (password.length < 6) {
+                    showAlert('error', 'Password must be at least 6 characters long.');
+                    return;
+                }
+                if (password !== confirmPassword) {
+                    showAlert('error', 'Passwords do not match.');
+                    return;
+                }
+
+                setBusy(true);
+                try {
+                    const res = await API.register(name, email, password);
+                    if (res.success) {
+                        showAlert('success', 'Registration successful! Signing in...');
+                        // Auto login
+                        const loginRes = await API.login(email, password);
+                        if (loginRes.success) {
+                            localStorage.setItem('token', loginRes.token);
+                            localStorage.setItem('username', loginRes.user.name);
+                            localStorage.setItem('is_logged_in', 'true');
+                            setTimeout(() => {
+                                window.location.href = 'index.html';
+                            }, 1200);
+                        } else {
+                            toggleMode();
+                            showAlert('success', 'Registration complete. Please sign in.');
+                            setBusy(false);
+                        }
+                    } else {
+                        showAlert('error', res.error || 'Registration failed.');
+                        setBusy(false);
+                    }
+                } catch (err) {
+                    showAlert('error', 'Cannot connect to backend server. Ensure it is running.');
+                    setBusy(false);
+                }
+            } else {
+                setBusy(true);
+                try {
+                    const res = await API.login(email, password);
+                    if (res.success) {
+                        localStorage.setItem('token', res.token);
+                        localStorage.setItem('username', res.user.name);
+                        localStorage.setItem('is_logged_in', 'true');
+                        showAlert('success', 'Sign in successful! Redirecting...');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1000);
+                    } else {
+                        showAlert('error', res.error || 'Incorrect email or password.');
+                        setBusy(false);
+                    }
+                } catch (err) {
+                    showAlert('error', 'Cannot connect to backend server. Is it running?');
+                    setBusy(false);
+                }
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "spec": "tests/**/*.spec.js",
+  "reporter": "mochawesome",
+  "reporter-option": [
+    "reportDir=reports",
+    "reportFilename=E2E_HTML_Report",
+    "html=true",
+    "json=true",
+    "overwrite=true",
+    "charts=true"
+  ],
+  "timeout": 45000,
+  "ui": "bdd",
+  "recursive": true
+}

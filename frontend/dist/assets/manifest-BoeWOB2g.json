@@ -1,0 +1,17 @@
+{
+  "name": "Yoga AI - Diabetic Wellness",
+  "short_name": "YogaAI",
+  "description": "AI-Based Real-Time Yoga Posture Correction for Diabetic Wellness",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#4A90E2",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3048/3048398.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

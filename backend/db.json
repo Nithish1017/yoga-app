@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "email": "guest@example.com",
+      "password": "password123",
+      "name": "Guest User",
+      "mobile": "",
+      "age": "",
+      "gender": "Male",
+      "diabeticType": "None",
+      "avatar": ""
+    }
+  ],
+  "currentUser": {
+    "email": "guest@example.com",
+    "name": "Guest User",
+    "mobile": "",
+    "age": "",
+    "gender": "Male",
+    "diabeticType": "None",
+    "avatar": ""
+  },
+  "wellness": {
+    "bloodSugar": [
+      { "date": "2026-05-04", "value": 110 },
+      { "date": "2026-05-05", "value": 115 },
+      { "date": "2026-05-06", "value": 108 },
+      { "date": "2026-05-07", "value": 120 },
+      { "date": "2026-05-08", "value": 112 },
+      { "date": "2026-05-09", "value": 105 },
+      { "date": "2026-05-10", "value": 100 }
+    ],
+    "hydration": 1.5,
+    "steps": 8432,
+    "streak": 12
+  },
+  "history": [
+    { "id": 1, "date": "2026-05-09", "pose": "Surya Namaskar", "duration": "15m", "accuracy": 92 },
+    { "id": 2, "date": "2026-05-08", "pose": "Vajrasana", "duration": "10m", "accuracy": 95 }
+  ],
+  "settings": {
+    "darkMode": false,
+    "notifications": true,
+    "cameraPermission": true
+  }
+}
