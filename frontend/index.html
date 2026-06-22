@@ -71,7 +71,7 @@
                         <div class="input-group">
                             <label for="auth-email">Email Address</label>
                             <div class="input-wrapper">
-                                <input type="email" id="auth-email" placeholder="yourname@gmail.com" required>
+                                <input type="email" id="auth-email" placeholder="yourname@gmail.com" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" oninput="this.setCustomValidity((this.value === '' || (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.value) && this.value.trim() === this.value && !this.value.includes('..'))) ? '' : 'Invalid email')">
                                 <i data-lucide="mail"></i>
                             </div>
                         </div>

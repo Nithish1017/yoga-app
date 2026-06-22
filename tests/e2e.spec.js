@@ -17,7 +17,7 @@ describe('Yoga AI - Static End-to-End Workflows', function() {
     let cameraPage;
     let uniqueEmail;
 
-    before(function() {
+    before(async function() {
         driver = global.driver;
         if (!driver) {
             this.skip();
@@ -29,6 +29,20 @@ describe('Yoga AI - Static End-to-End Workflows', function() {
         cameraPage = new CameraPage(driver);
         
         uniqueEmail = `e2e_${Date.now()}@example.com`;
+
+        // Clear local storage, caches, and unregister service workers to guarantee a clean, logged-out start
+        await driver.get(config.baseUrl);
+        await driver.executeScript(`
+            localStorage.clear();
+            sessionStorage.clear();
+            if (window.caches) {
+                caches.keys().then(keys => keys.forEach(key => caches.delete(key)));
+            }
+            if (navigator.serviceWorker) {
+                navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(reg => reg.unregister()));
+            }
+        `);
+        await driver.navigate().refresh();
     });
 
     it('1. Authentication - Should reject invalid login credentials', async function() {
@@ -116,6 +130,12 @@ describe('Yoga AI - Static End-to-End Workflows', function() {
         excelReporter.logStep(this.test.title, 'Adding 250ml water intake', 'Pass');
         const originalWaterText = await healthPage.getWaterText();
         await healthPage.addWater();
+        
+        // Wait for the water text to update asynchronously
+        await driver.wait(async () => {
+            const currentText = await healthPage.getWaterText();
+            return currentText !== originalWaterText;
+        }, 5000, 'Water intake text did not update after clicking add button');
         
         const updatedWaterText = await healthPage.getWaterText();
         expect(updatedWaterText).to.not.equal(originalWaterText);

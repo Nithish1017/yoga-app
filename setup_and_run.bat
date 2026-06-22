@@ -31,7 +31,7 @@ start cmd /k "cd /d %~dp0backend && .venv\Scripts\activate.bat && uvicorn main:a
 
 echo.
 echo === Setup Completed! ===
-echo Frontend: http://localhost:5173
+echo Frontend: http://localhost:5185
 echo Backend:  http://localhost:8000
 echo.
 pause

@@ -59,7 +59,7 @@ project-root/
 ## Executing Tests Locally
 
 Ensure the **Yoga AI** application is running locally before executing the automation suite:
-* Frontend: `http://localhost:5173`
+* Frontend: `http://localhost:5185`
 * Backend: `http://localhost:8000`
 *(You can spin both up using the `setup_and_run.bat` script in the root)*
 

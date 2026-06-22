@@ -5,7 +5,7 @@ dotenv.config();
 
 const config = {
     // Application under test
-    baseUrl: process.env.BASE_URL || 'http://localhost:5173',
+    baseUrl: process.env.BASE_URL || 'http://localhost:5185',
     backendUrl: process.env.BACKEND_URL || 'http://localhost:8000',
 
     // Test environment variables
@@ -32,7 +32,7 @@ const config = {
             diabeticType: 'Pre-diabetic'
         },
         invalidUser: {
-            email: 'wrong.email@invalid',
+            email: 'wrong.email@invalid.com',
             password: '123'
         }
     },

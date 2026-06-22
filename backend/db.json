@@ -3,40 +3,192 @@
     {
       "email": "guest@example.com",
       "password": "password123",
-      "name": "Guest User",
+      "name": "QA Automator Updated",
+      "mobile": "+12345678901",
+      "age": "28",
+      "gender": "Male",
+      "diabeticType": "Pre-diabetic",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150"
+    },
+    {
+      "email": "ganesh442006@gmail.com",
+      "password": "nithish",
+      "name": "mani",
       "mobile": "",
       "age": "",
       "gender": "Male",
       "diabeticType": "None",
       "avatar": ""
+    },
+    {
+      "email": "e2e_1782118952430@example.com",
+      "password": "SecurePassword123!",
+      "name": "QA Automator Updated",
+      "mobile": "+12345678901",
+      "age": "28",
+      "gender": "Male",
+      "diabeticType": "Pre-diabetic",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150"
+    },
+    {
+      "email": "e2e_1782119185647@example.com",
+      "password": "SecurePassword123!",
+      "name": "QA Automator Updated",
+      "mobile": "+12345678901",
+      "age": "28",
+      "gender": "Male",
+      "diabeticType": "Pre-diabetic",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150"
+    },
+    {
+      "email": "e2e_1782119648623@example.com",
+      "password": "SecurePassword123!",
+      "name": "QA Automator Updated",
+      "mobile": "+12345678901",
+      "age": "28",
+      "gender": "Male",
+      "diabeticType": "Pre-diabetic",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150"
+    },
+    {
+      "email": "e2e_1782119827661@example.com",
+      "password": "SecurePassword123!",
+      "name": "QA Automator Updated",
+      "mobile": "+12345678901",
+      "age": "28",
+      "gender": "Male",
+      "diabeticType": "Pre-diabetic",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150"
+    },
+    {
+      "email": "e2e_1782119932803@example.com",
+      "password": "SecurePassword123!",
+      "name": "QA Automator Updated",
+      "mobile": "+12345678901",
+      "age": "28",
+      "gender": "Male",
+      "diabeticType": "Pre-diabetic",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150"
+    },
+    {
+      "email": "e2e_1782120013509@example.com",
+      "password": "SecurePassword123!",
+      "name": "QA Automator Updated",
+      "mobile": "+12345678901",
+      "age": "28",
+      "gender": "Male",
+      "diabeticType": "Pre-diabetic",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150"
     }
   ],
   "currentUser": {
-    "email": "guest@example.com",
-    "name": "Guest User",
-    "mobile": "",
-    "age": "",
+    "email": "e2e_1782120013509@example.com",
+    "name": "QA Automator Updated",
+    "mobile": "+12345678901",
+    "age": "28",
     "gender": "Male",
-    "diabeticType": "None",
-    "avatar": ""
+    "diabeticType": "Pre-diabetic",
+    "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&h=150"
   },
   "wellness": {
     "bloodSugar": [
-      { "date": "2026-05-04", "value": 110 },
-      { "date": "2026-05-05", "value": 115 },
-      { "date": "2026-05-06", "value": 108 },
-      { "date": "2026-05-07", "value": 120 },
-      { "date": "2026-05-08", "value": 112 },
-      { "date": "2026-05-09", "value": 105 },
-      { "date": "2026-05-10", "value": 100 }
+      {
+        "date": "2026-05-04",
+        "value": 110
+      },
+      {
+        "date": "2026-05-05",
+        "value": 115
+      },
+      {
+        "date": "2026-05-06",
+        "value": 108
+      },
+      {
+        "date": "2026-05-07",
+        "value": 120
+      },
+      {
+        "date": "2026-05-08",
+        "value": 112
+      },
+      {
+        "date": "2026-05-09",
+        "value": 105
+      },
+      {
+        "date": "2026-05-10",
+        "value": 100
+      }
     ],
-    "hydration": 1.5,
+    "hydration": 3.25,
     "steps": 8432,
     "streak": 12
   },
   "history": [
-    { "id": 1, "date": "2026-05-09", "pose": "Surya Namaskar", "duration": "15m", "accuracy": 92 },
-    { "id": 2, "date": "2026-05-08", "pose": "Vajrasana", "duration": "10m", "accuracy": 95 }
+    {
+      "id": 1782120018066,
+      "date": "2026-06-22",
+      "pose": "Vajrasana",
+      "duration": "5m",
+      "accuracy": 96.0
+    },
+    {
+      "id": 1782119937362,
+      "date": "2026-06-22",
+      "pose": "Vajrasana",
+      "duration": "5m",
+      "accuracy": 96.0
+    },
+    {
+      "id": 1782119832312,
+      "date": "2026-06-22",
+      "pose": "Vajrasana",
+      "duration": "5m",
+      "accuracy": 96.0
+    },
+    {
+      "id": 1782119655349,
+      "date": "2026-06-22",
+      "pose": "Vajrasana",
+      "duration": "5m",
+      "accuracy": 96.0
+    },
+    {
+      "id": 1782119190064,
+      "date": "2026-06-22",
+      "pose": "Vajrasana",
+      "duration": "5m",
+      "accuracy": 96.0
+    },
+    {
+      "id": 1782118956864,
+      "date": "2026-06-22",
+      "pose": "Vajrasana",
+      "duration": "5m",
+      "accuracy": 96.0
+    },
+    {
+      "id": 1782118803222,
+      "date": "2026-06-22",
+      "pose": "Vajrasana",
+      "duration": "5m",
+      "accuracy": 96.0
+    },
+    {
+      "id": 1,
+      "date": "2026-05-09",
+      "pose": "Surya Namaskar",
+      "duration": "15m",
+      "accuracy": 92
+    },
+    {
+      "id": 2,
+      "date": "2026-05-08",
+      "pose": "Vajrasana",
+      "duration": "10m",
+      "accuracy": 95
+    }
   ],
   "settings": {
     "darkMode": false,

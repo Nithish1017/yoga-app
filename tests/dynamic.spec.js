@@ -24,6 +24,18 @@ describe('Yoga AI - Dynamic & Data-Driven Test Cases', function() {
             this.skip();
         }
         await driver.get(config.baseUrl);
+        // Clear local storage, caches, and unregister service workers to avoid stale cached assets
+        await driver.executeScript(`
+            localStorage.clear();
+            sessionStorage.clear();
+            if (window.caches) {
+                caches.keys().then(keys => keys.forEach(key => caches.delete(key)));
+            }
+            if (navigator.serviceWorker) {
+                navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(reg => reg.unregister()));
+            }
+        `);
+        await driver.navigate().refresh();
     });
 
     describe('1. Screen Routing Tests (Auto-Discovered)', function() {
@@ -62,10 +74,17 @@ describe('Yoga AI - Dynamic & Data-Driven Test Cases', function() {
                     const pwd = document.getElementById('auth-password');
                     const cpwd = document.getElementById('reg-confirm-password');
                     
-                    if (name) name.value = arguments[0];
-                    if (email) email.value = arguments[1];
-                    if (pwd) pwd.value = arguments[2];
-                    if (cpwd) cpwd.value = arguments[3];
+                    if (name) { name.value = arguments[0]; name.dispatchEvent(new Event('input')); }
+                    if (email) { 
+                        email.value = arguments[1]; 
+                        email.dispatchEvent(new Event('input')); 
+                        const rawEmail = arguments[1] || '';
+                        if (rawEmail !== rawEmail.trim() || rawEmail.includes('..')) {
+                            email.setCustomValidity('Invalid email');
+                        }
+                    }
+                    if (pwd) { pwd.value = arguments[2]; pwd.dispatchEvent(new Event('input')); }
+                    if (cpwd) { cpwd.value = arguments[3]; cpwd.dispatchEvent(new Event('input')); }
                     
                     return {
                         formValid: form.checkValidity(),
