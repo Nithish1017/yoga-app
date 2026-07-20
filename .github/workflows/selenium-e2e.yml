@@ -41,9 +41,10 @@ jobs:
         run: |
           npm install
 
-      - name: Generate Dynamic 500+ Test Cases & Excel Workbook
+      - name: Generate Dynamic 500+ Test Cases & 400 Spec File & Excel Workbook
         run: |
           node utilities/testdata.generator.js
+          node utilities/generate_400_spec_file.js
           node utilities/generate_excel_samples.js
 
       - name: Start Application Servers and Run Selenium Tests
