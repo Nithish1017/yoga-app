@@ -4,11 +4,12 @@
   "description": "Enterprise E2E Selenium Automation Framework for Yoga AI App",
   "type": "module",
   "scripts": {
-    "test": "mocha tests/setup.js tests/**/*.spec.js --timeout 45000 --exit",
-    "test:chrome": "cross-env BROWSER=chrome HEADLESS=true mocha tests/setup.js tests/**/*.spec.js --timeout 45000 --exit",
-    "test:firefox": "cross-env BROWSER=firefox HEADLESS=true mocha tests/setup.js tests/**/*.spec.js --timeout 45000 --exit",
-    "test:edge": "cross-env BROWSER=edge HEADLESS=true mocha tests/setup.js tests/**/*.spec.js --timeout 45000 --exit",
-    "test:headed": "cross-env HEADLESS=false mocha tests/setup.js tests/**/*.spec.js --timeout 45000 --exit"
+    "test": "mocha tests/setup.js tests/**/*.spec.js --timeout 120000 --exit",
+    "test:400": "mocha tests/setup.js tests/selenium_400_testcases.spec.js --timeout 120000 --exit",
+    "test:chrome": "cross-env BROWSER=chrome HEADLESS=true mocha tests/setup.js tests/selenium_400_testcases.spec.js tests/selenium_samples.spec.js --timeout 120000 --exit",
+    "test:firefox": "cross-env BROWSER=firefox HEADLESS=true mocha tests/setup.js tests/selenium_400_testcases.spec.js tests/selenium_samples.spec.js --timeout 120000 --exit",
+    "test:edge": "cross-env BROWSER=edge HEADLESS=true mocha tests/setup.js tests/selenium_400_testcases.spec.js tests/selenium_samples.spec.js --timeout 120000 --exit",
+    "test:headed": "cross-env HEADLESS=false mocha tests/setup.js tests/selenium_400_testcases.spec.js --timeout 120000 --exit"
   },
   "dependencies": {
     "chai": "^5.1.1",

@@ -73,8 +73,8 @@ jobs:
           # 3. Wait for frontend server to be active
           npx wait-on -t 45000 http://127.0.0.1:5185
           
-          # 4. Execute E2E, Dynamic (500+), and Selenium Sample test suites
-          npm run test:chrome
+          # 4. Execute E2E, Dynamic (500+), and Explicit 400 Selenium Testcases suites
+          npx mocha tests/setup.js tests/selenium_400_testcases.spec.js tests/selenium_samples.spec.js --timeout 120000 --exit
         shell: bash
 
       - name: Upload Excel Test Reports
