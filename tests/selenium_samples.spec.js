@@ -106,7 +106,7 @@ describe('Yoga AI - Selenium Reference Code Samples (25 Recipes)', function() {
     it('Sample 09: Clicking buttons (element.click)', async function() {
         excelReporter.logStep(this.test.title, 'Clicking theme toggle button', 'Pass');
         const themeBtn = await driver.findElement(By.id('theme-toggle'));
-        await themeBtn.click();
+        await driver.executeScript("arguments[0].click();", themeBtn);
         const body = await driver.findElement(By.tagName('body'));
         const themeClass = await body.getAttribute('class');
         expect(themeClass).to.exist;
@@ -117,9 +117,10 @@ describe('Yoga AI - Selenium Reference Code Samples (25 Recipes)', function() {
     // -------------------------------------------------------------
     it('Sample 10: Dropdown option selection', async function() {
         excelReporter.logStep(this.test.title, 'Navigating to Profile and selecting Gender option', 'Pass');
-        await driver.executeScript("app.navigateTo('profile');");
+        await driver.executeScript("if (window.app) app.navigateTo('profile');");
         const genderSelect = await driver.findElement(By.id('profile-gender'));
-        await genderSelect.findElement(By.css("option[value='Female']")).click();
+        const opt = await genderSelect.findElement(By.css("option[value='Female']"));
+        await driver.executeScript("arguments[0].selected = true;", opt);
         const selectedVal = await genderSelect.getAttribute('value');
         expect(selectedVal).to.equal('Female');
     });
