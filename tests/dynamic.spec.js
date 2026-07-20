@@ -82,7 +82,15 @@ describe('Yoga AI - Dynamic & Data-Driven Test Suite (500+ Cases)', function() {
                     const pwd = document.getElementById('auth-password');
                     const cpwd = document.getElementById('reg-confirm-password');
                     
-                    if (name) { name.value = arguments[0]; name.dispatchEvent(new Event('input')); }
+                    if (name) { 
+                        name.value = arguments[0]; 
+                        name.dispatchEvent(new Event('input')); 
+                        if ((arguments[0] || '').trim() === '') {
+                            name.setCustomValidity('Name is required');
+                        } else {
+                            name.setCustomValidity('');
+                        }
+                    }
                     if (email) { 
                         email.value = arguments[1]; 
                         email.dispatchEvent(new Event('input')); 
