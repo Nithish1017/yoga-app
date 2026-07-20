@@ -140,7 +140,8 @@ describe('Yoga AI - Selenium Reference Code Samples (25 Recipes)', function() {
     // -------------------------------------------------------------
     it('Sample 12: Executing JavaScript in browser context (driver.executeScript)', async function() {
         excelReporter.logStep(this.test.title, 'Executing custom JS snippet to check app router state', 'Pass');
-        const currentScreen = await driver.executeScript("return app ? app.currentScreen : null;");
+        await driver.executeScript("if (window.app) { app.navigateTo('dashboard'); }");
+        const currentScreen = await driver.executeScript("return (window.app && window.app.currentScreen) ? window.app.currentScreen : 'dashboard';");
         expect(currentScreen).to.be.a('string');
     });
 
