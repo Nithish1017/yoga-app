@@ -48,7 +48,7 @@ export class BrowserHelper {
             options.setPreference('media.navigator.permission.disabled', true);
             options.setPreference('media.navigator.streams.fake', true);
             if (headless) {
-                options.addArguments('--headless');
+                options.addArguments('-headless');
             }
             builder = builder.forBrowser('firefox').setFirefoxOptions(options);
         } else if (browserName === 'edge') {
