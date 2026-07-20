@@ -32,13 +32,15 @@ project-root/
 ├── tests/
 │   ├── setup.js             # Global Mocha hooks, driver setup & Excel report generator
 │   ├── e2e.spec.js          # Static E2E business workflows tests
-│   └── dynamic.spec.js      # Dynamically generated validation & route tests
+│   ├── dynamic.spec.js      # 500+ Dynamically generated validation & route tests
+│   └── selenium_samples.spec.js # 25+ Standalone Selenium WebDriver code recipes & samples
 ├── utilities/
 │   ├── browser.helper.js    # Multi-browser builder helper (headed/headless)
 │   ├── dynamic.analyzer.js  # HTML/JS validation code-scraper utility
 │   ├── excel.reporter.js    # Custom ExcelJS reporter
 │   ├── logger.js            # Winston console/file logging utility
-│   └── screenshot.js        # Error snapshotting utility
+│   ├── screenshot.js        # Error snapshotting utility
+│   └── testdata.generator.js # Data generator building 500+ test cases
 ├── package.json             # NPM package scripts & dependencies
 ├── .mocharc.json            # Mocha configurations
 └── README.md                # Framework user guide
