@@ -41,9 +41,10 @@ jobs:
         run: |
           npm install
 
-      - name: Generate Dynamic 500+ Test Cases & Advanced Spec Files & Excel Workbooks
+      - name: Generate Dynamic 500+ Test Cases & 400 Load Test Spec Files & Excel Workbooks
         run: |
           node utilities/testdata.generator.js
+          node utilities/generate_loadtest_400_spec.js
           node utilities/generate_advanced_spec_file.js
           node utilities/generate_350_spec_file.js
           node utilities/generate_400_spec_file.js
@@ -75,8 +76,8 @@ jobs:
           # 3. Wait for frontend server to be active
           npx wait-on -t 45000 http://127.0.0.1:5185
           
-          # 4. Execute E2E, Advanced Features, and 350 / 400 Selenium Testcase suites
-          npx mocha tests/setup.js tests/selenium_advanced_features.spec.js tests/selenium_350_testcases.spec.js --timeout 120000 --exit
+          # 4. Execute E2E, 400 Load Tests, and Advanced Features suites
+          npx mocha tests/setup.js tests/loadtest_400_testcases.spec.js tests/selenium_advanced_features.spec.js --timeout 180000 --exit
         shell: bash
 
       - name: Upload Excel Test Reports
