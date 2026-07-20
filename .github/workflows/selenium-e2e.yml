@@ -76,7 +76,10 @@ jobs:
           # 3. Wait for frontend server to be active
           npx wait-on -t 45000 http://127.0.0.1:5185
           
-          # 4. Execute E2E, 400 Load Tests, and Advanced Features suites
+          # 4. Execute 300 Performance Load Tests
+          npm run loadtest:300
+          
+          # 5. Execute E2E, 400 Load Tests, and Advanced Features suites
           npx mocha tests/setup.js tests/loadtest_400_testcases.spec.js tests/selenium_advanced_features.spec.js --timeout 180000 --exit
         shell: bash
 

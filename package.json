@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha tests/setup.js tests/**/*.spec.js --timeout 120000 --exit",
+    "loadtest:300": "node loadtest/generate_300_loadtest.js && node loadtest/run_300_loadtests.js",
     "test:load": "mocha tests/setup.js tests/loadtest_400_testcases.spec.js --timeout 180000 --exit",
     "test:advanced": "mocha tests/setup.js tests/selenium_advanced_features.spec.js --timeout 120000 --exit",
     "test:350": "mocha tests/setup.js tests/selenium_350_testcases.spec.js --timeout 120000 --exit",
