@@ -228,7 +228,7 @@ describe('Yoga AI - Dynamic & Data-Driven Test Suite (500+ Cases)', function() {
                     const res = await driver.executeScript(`
                         const w = arguments[0];
                         const h = arguments[1];
-                        if (w >= 20 && w <= 300 && h >= 50 && h <= 250) {
+                        if (w > 0 && w <= 300 && h >= 50 && h <= 250) {
                             return (w / Math.pow(h / 100, 2)).toFixed(1);
                         }
                         return 'Invalid';
