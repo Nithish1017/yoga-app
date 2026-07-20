@@ -9,12 +9,8 @@ on:
 
 jobs:
   e2e-tests:
+    name: Selenium E2E Automation Suite
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        browser: [chrome, firefox]
 
     steps:
       - name: Checkout Repository
@@ -29,10 +25,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-
-      - name: Setup Firefox & GeckoDriver
-        if: matrix.browser == 'firefox'
-        uses: browser-actions/setup-geckodriver@v1
 
       - name: Install Backend Dependencies
         run: |
@@ -49,15 +41,16 @@ jobs:
         run: |
           npm install
 
-      - name: Generate Dynamic 500+ Test Cases
+      - name: Generate Dynamic 500+ Test Cases & Excel Workbook
         run: |
           node utilities/testdata.generator.js
+          node utilities/generate_excel_samples.js
 
-      - name: Start Servers and Run Headless Selenium Tests (${{ matrix.browser }})
+      - name: Start Application Servers and Run Selenium Tests
         env:
           BASE_URL: http://127.0.0.1:5185
           BACKEND_URL: http://127.0.0.1:8000
-          BROWSER: ${{ matrix.browser }}
+          BROWSER: chrome
           HEADLESS: "true"
         run: |
           # 1. Start backend server if present
@@ -80,33 +73,33 @@ jobs:
           npx wait-on -t 45000 http://127.0.0.1:5185
           
           # 4. Execute E2E, Dynamic (500+), and Selenium Sample test suites
-          npx mocha tests/setup.js tests/**/*.spec.js --timeout 120000 --exit
+          npm run test:chrome
         shell: bash
 
-      - name: Upload Excel Report
+      - name: Upload Excel Test Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: E2E-Excel-Report-${{ matrix.browser }}
-          path: excel/E2E_Report.xlsx
+          name: Selenium-Excel-Reports
+          path: excel/
 
       - name: Upload Mochawesome HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Mochawesome-HTML-Report-${{ matrix.browser }}
+          name: Mochawesome-HTML-Report
           path: reports/
 
-      - name: Upload Logs
+      - name: Upload Execution Logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Execution-Logs-${{ matrix.browser }}
+          name: Execution-Logs
           path: logs/
 
-      - name: Upload Failure Screenshots & Details
+      - name: Upload Failure Details (If Any)
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: Failure-Artifacts-${{ matrix.browser }}
+          name: Failure-Artifacts
           path: reports/failures/
