@@ -228,7 +228,7 @@ describe('Yoga AI - Dynamic & Data-Driven Test Suite (500+ Cases)', function() {
                     const res = await driver.executeScript(`
                         const w = arguments[0];
                         const h = arguments[1];
-                        if (w > 0 && h > 0) {
+                        if (w >= 20 && w <= 300 && h >= 50 && h <= 250) {
                             return (w / Math.pow(h / 100, 2)).toFixed(1);
                         }
                         return 'Invalid';
@@ -238,7 +238,7 @@ describe('Yoga AI - Dynamic & Data-Driven Test Suite (500+ Cases)', function() {
                         expect(res).to.not.equal('Invalid');
                         expect(parseFloat(res)).to.be.greaterThan(0);
                     } else {
-                        expect(res === 'Invalid' || isNaN(parseFloat(res))).to.be.true;
+                        expect(res).to.equal('Invalid');
                     }
                 }
 
